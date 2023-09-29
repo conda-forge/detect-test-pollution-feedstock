@@ -1,5 +1,5 @@
 {% set name = "detect-test-pollution" %}
-{% set version = "1.1.1" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/detect_test_pollution-{{ version }}.tar.gz
-  sha256: 29ba3656ced2c94e8c77e23ad15ebf193b838ce5ff67c480a44fa4e1acb31703
+  sha256: 94f383759bbab309771ceedb8dd526a62fa59607e5f7e41f5b33bbc656bfcea9
 
 build:
   entry_points:
