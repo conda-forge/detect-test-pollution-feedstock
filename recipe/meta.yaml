@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/detect_test_pollution-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/detect_test_pollution-{{ version }}.tar.gz
   sha256: 94f383759bbab309771ceedb8dd526a62fa59607e5f7e41f5b33bbc656bfcea9
 
 build:
@@ -14,14 +14,14 @@ build:
     - detect-test-pollution = detect_test_pollution:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
   requires:
     - pip
     - pytest
+    - python {{ python_min }}
 
 about:
   home: https://github.com/asottile/detect-test-pollution
