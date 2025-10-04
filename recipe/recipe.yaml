@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: detect-test-pollution
+  version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/detect_test_pollution-${{ version }}.tar.gz
+  sha256: 94f383759bbab309771ceedb8dd526a62fa59607e5f7e41f5b33bbc656bfcea9
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - detect-test-pollution = detect_test_pollution:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - detect_test_pollution
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - detect-test-pollution --help
+
+about:
+  summary: a tool to detect test pollution
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/asottile/detect-test-pollution
+
+extra:
+  recipe-maintainers:
+    - rxm7706
