@@ -38,7 +38,8 @@ tests:
     script:
       - pip check
       - detect-test-pollution --help
-      - python -c import detect_test_pollution 
+      - python -c "import detect_test_pollution"
+      #- python -c "assert __import__('detect_test_pollution').__version__ == '${{ version }}'"
 
 about:
   summary: a tool to detect test pollution
