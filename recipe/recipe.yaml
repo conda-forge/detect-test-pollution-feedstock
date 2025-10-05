@@ -30,11 +30,6 @@ requirements:
     - python >=${{ python_min }},<4.0
 
 tests:
-  - python:
-      imports:
-        - detect_test_pollution
-      python_version: ${{ python_min }}.*
-      pip_check: true
   - requirements:
       run:
         - pip
@@ -43,6 +38,7 @@ tests:
     script:
       - pip check
       - detect-test-pollution --help
+      - python -c "import detect_test_pollution; assert detect_test_pollution.version == '${{ version }}'" 
 
 about:
   summary: a tool to detect test pollution
