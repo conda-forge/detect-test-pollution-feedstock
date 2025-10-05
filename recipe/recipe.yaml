@@ -32,13 +32,14 @@ requirements:
 tests:
   - requirements:
       run:
+        - python ${{ python_min }}.*
         - pip
         - pytest
-        - python ${{ python_min }}.*
     script:
       - pip check
       - detect-test-pollution --help
       - python -c "import detect_test_pollution"
+      - python -c "import importlib.metadata; assert importlib.metadata.version('detect_test_pollution') == '${{ version }}'"
       #- python -c "assert __import__('detect_test_pollution').__version__ == '${{ version }}'"
 
 about:
